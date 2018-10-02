@@ -33,7 +33,7 @@ public class TokenizeAndStemming {
 	private static void countTokens(String idType, Boolean stem) throws Exception {
 		Map<String, Integer> tokenList = new HashMap<String, Integer>();
 		Map<Integer, Integer> idList = new HashMap<Integer, Integer>();
-		int counter = 0, tokenCounter = 0, length = 0;
+		int tokenCounter = 0, length = 0;
 		ArrayList<String> tokens = new ArrayList<String>();
 		Iterator<?> i = Json.readJSON();
 
@@ -51,7 +51,6 @@ public class TokenizeAndStemming {
 			}
 
 			if (!idList.containsKey(length)) {
-				counter++;
 				idList.put(length, 1);
 			} else {
 				int count = idList.get(length);
@@ -61,18 +60,16 @@ public class TokenizeAndStemming {
 
 			for (int j = 0; j < tokens.size(); j++)
 				if (!tokenList.containsKey(tokens.get(j))) {
-					// System.out.println(tokens[j] + " notcontains");
 					tokenList.put(tokens.get(j), 1);
 					tokenCounter++;
 				} else {
-					// System.out.println(tokens[j] + " contains");
 					int count = tokenList.get(tokens.get(j));
 					count++;
 					tokenList.put(tokens.get(j), count);
 				}
 		}
 		System.out.println("x = number of tokens in a sentence" + '\n' + "y = number of sentences with that x tokens"
-				+ '\n' + "Number of unique token count: " + counter);
+				+ '\n' + "Number of unique token count: " + idList.size());
 		HashMapSort.sortDescending(idList, "Tokenization");
 
 		System.out.println();
@@ -120,7 +117,7 @@ public class TokenizeAndStemming {
 			tokensList.set(i, stemmer.stem(tokensList.get(i)));
 		}
 
-		return tokens.length;
+		return tokensList.size();
 	}
 
 	private static ArrayList<String> allUniqueStemmedToken(String sentence) throws Exception {

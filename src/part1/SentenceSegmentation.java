@@ -16,7 +16,7 @@ import org.json.simple.JSONObject;
 
 public class SentenceSegmentation {
 
-	static String openNLPBinLocation = "C:\\Users\\Derrick\\OneDrive - Nanyang Technological University\\NTU\\Modules\\Y3S1\\CZ4045 Natural Langauge Processing\\Project\\NLP Assignment\\libraries\\en-sent.bin";
+	static String openNLPBinLocation = "libraries\\en-sent.bin";
 
 	private static void countSentences(String idType) throws Exception {
 		

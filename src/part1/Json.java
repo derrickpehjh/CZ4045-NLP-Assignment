@@ -16,7 +16,7 @@ import org.json.simple.parser.ParseException;
 public class Json {
 
 	static String fileLocation = "dataset\\CellPhoneReview.json";
-	static String formattedfileLocation = "C:\\Users\\Derrick\\OneDrive - Nanyang Technological University\\NTU\\Modules\\Y3S1\\CZ4045 Natural Langauge Processing\\Project\\NLP Assignment\\dataset\\formattedCellPhoneReivew.json";
+	static String formattedfileLocation = "dataset\\formattedCellPhoneReivew.json";
 
 	public static void formatJSON() throws IOException {
 
