@@ -3,9 +3,12 @@ package part3;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
@@ -34,40 +37,64 @@ public class Sentiment {
 		Map<String, Integer> idposList = new HashMap<String, Integer>();
 		Map<String, Integer> idnegList = new HashMap<String, Integer>();
 		Iterator<?> it = Json.readJSON();
-
+		
+		System.out.println("Running sentiment analysis - Retreiving top 20 polarity of words");
 		while (it.hasNext()) {
 			JSONObject obj = (JSONObject) it.next();
 			String sentence = (String) obj.get("summary");
 			String tokens[] = tokenizer.tokenize(sentence); // Tokenize the sentence
-			String tags[] = posTagger.tag(tokens); // Tagger tagging the tokens
 
-			for (int j = 0; j < tokens.length; j++) {
-				if (tags[j].equals("JJ"))
-//					 System.out.print(tokens[j] + " (" + tags[j] + ") ");
-					if ((double) obj.get("overall") > 2.5) {
-						if (!idposList.containsKey(tokens[j])) {
-							idposList.put(tokens[j], 1);
+			String tags[] = posTagger.tag(tokens); // Tagger tagging the tokens
+			ArrayList<String> tokensList = new ArrayList<String>(Arrays.asList(tokens));
+			tokensList.replaceAll(String::toLowerCase);
+
+			//using score range to retrieve positive (4-5) and negative (0-3) sentiments
+			for (int j = 0; j < tokensList.size(); j++) {
+				if (tags[j].equals("JJ")) {
+
+					if ((double) obj.get("overall") > 3) {
+						if (!idposList.containsKey(tokensList.get(j))) {
+							idposList.put(tokensList.get(j), 1);
 						} else {
-							int count = idposList.get(tokens[j]);
+							int count = idposList.get(tokensList.get(j));
 							count++;
-							idposList.put(tokens[j], count);
+							idposList.put(tokensList.get(j), count);
 						}
+
 					} else {
-						if (!idnegList.containsKey(tokens[j])) {
-							idnegList.put(tokens[j], 1);
+						if (!idnegList.containsKey(tokensList.get(j))) {
+							idnegList.put(tokensList.get(j), 1);
 						} else {
-							int count = idnegList.get(tokens[j]);
+							int count = idnegList.get(tokensList.get(j));
 							count++;
-							idnegList.put(tokens[j], count);
+							idnegList.put(tokensList.get(j), count);
 						}
 					}
+				}
 			}
-			System.out.println("Positive: " + idposList.size() + "  Negative: " + idnegList.size());
+//			System.out.println("Positive: " + idposList.size() + " Negative: " + idnegList.size());
 		}
-		System.out.println("Positive List: " );
-		HashMapSort.sortDescending(idposList,"sentiment");
-		System.out.println('\n' + "Negative List: " );
-		HashMapSort.sortDescending(idnegList,"sentiment");
+
+		
+		//removing duplicate keys in both list to prevent ambiguity
+		ArrayList<String> common = new ArrayList<String>();
+		for (String a : idposList.keySet()) {
+			if (idnegList.containsKey(a)) {
+				common.add(a);
+			}
+		}
+			for (int i = 0; i < common.size(); i++) {
+				if (idnegList.containsKey(common.get(i)))
+					idnegList.remove(common.get(i));
+				if (idposList.containsKey(common.get(i)))
+					idposList.remove(common.get(i));
+			}
+
+
+		System.out.println("Positive List: ");
+		HashMapSort.sortDescending(idposList, "sentiment");
+		System.out.println('\n' + "Negative List: ");
+		HashMapSort.sortDescending(idnegList, "sentiment");
 
 	}
 
