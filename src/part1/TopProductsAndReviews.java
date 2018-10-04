@@ -17,14 +17,14 @@ public class TopProductsAndReviews {
 		Map<String, Integer> idList = new HashMap<String, Integer>();
 		int counter = 0;
 		Iterator<?> i = Json.readJSON();
-		
-		if(idType == "reviewerID")
-		System.out.println("Running Review Counter");
-		else if(idType == "asin")
+
+		if (idType == "reviewerID")
+			System.out.println("Running Review Counter");
+		else if (idType == "asin")
 			System.out.println("Running Product Counter");
 		else
-			System.out.println("Running " +  idType +  " Counter");
-		
+			System.out.println("Running " + idType + " Counter");
+
 		while (i.hasNext()) {
 
 			JSONObject obj = (JSONObject) i.next();
@@ -38,17 +38,14 @@ public class TopProductsAndReviews {
 				idList.put(id, count);
 			}
 		}
-		System.out.println("\n" +"Number of unique " + idType + ": " + counter );
-		HashMapSort.sortDescending(idList,"TopProductsAndReviews");
+		System.out.println("\n" + "Number of unique " + idType + ": " + counter);
+		HashMapSort.sortDescending(idList, "TopProductsAndReviews");
 	}
-
-	
 
 	public static void main(String[] args) throws IOException, ParseException {
 		/*
-		* reviewerID - reviewerID
-		* asin - ProductID
-		*/
+		 * reviewerID - reviewerID asin - ProductID
+		 */
 		countReviewerorProductID("reviewerID");
 		countReviewerorProductID("asin");
 

@@ -17,10 +17,11 @@ public class TokenizeAndStemming {
 	private static String[] stopwords = { ".", "the", "I", "and", "it", "to", "a", "is", "'", "on", "of", "for", "my",
 			"thi", "that", "in", "with", ",", "this", "you", "have", "The", "but", "-", "not", "t", "s", "was", "It",
 			"as", "one", "so", ")", "are", "(", "be", "like", "or", "can", "very", "your", "This", "!", "at", "from",
-			"just", "when","if","has","will","would","they","get","an","had","me","2","3","4","than",":",";","5"
-			,"/","about","&","use","out","all","well","up","no","only","\"","really","off","other","which","i"
-			,"more","them","because","does","much","do","also","little","these","#","there","any","ve","back"
-			,"don","work","works","m","1","some","what","...","too","its","us","need","make"};
+			"just", "when", "if", "has", "will", "would", "they", "get", "an", "had", "me", "2", "3", "4", "than", ":",
+			";", "5", "/", "about", "&", "use", "out", "all", "well", "up", "no", "only", "\"", "really", "off",
+			"other", "which", "i", "more", "them", "because", "does", "much", "do", "also", "little", "these", "#",
+			"there", "any", "ve", "back", "don", "work", "works", "m", "1", "some", "what", "...", "too", "its", "us",
+			"need", "make" };
 
 	private static Set<String> addWordsToStopList() {
 		Set<String> set = new HashSet<>();
@@ -139,7 +140,10 @@ public class TokenizeAndStemming {
 	}
 
 	public static void main(String[] args) throws Exception {
-//		 countTokens("reviewText",false);
+		/*
+		 * 2nd parameter : true = stemming , false = no stemming
+		 */
+		// countTokens("reviewText",false);
 		countTokens("reviewText", true);
 	}
 }

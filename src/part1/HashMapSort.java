@@ -61,8 +61,7 @@ public class HashMapSort {
 					System.out.println(me.getValue());
 				}
 			}
-		} 
-		else if (idType.equals("sentiment")) {
+		} else if (idType.equals("sentiment")) {
 			Map<Integer, String> map = sortByValues((HashMap<?, ?>) idList);
 			System.out.println("After Sorting:");
 			Set<Entry<Integer, String>> set = map.entrySet();
@@ -77,8 +76,7 @@ public class HashMapSort {
 					System.out.println(me.getValue());
 				}
 			}
-		}
-		else {
+		} else {
 			Map<Integer, String> map = sortByValues((HashMap<?, ?>) idList);
 			System.out.println("After Sorting:");
 			Set<Entry<Integer, String>> set = map.entrySet();

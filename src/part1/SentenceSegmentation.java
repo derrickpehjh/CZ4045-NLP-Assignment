@@ -19,11 +19,11 @@ public class SentenceSegmentation {
 	static String openNLPBinLocation = "libraries\\en-sent.bin";
 
 	private static void countSentences(String idType) throws Exception {
-		
+
 		Random rand = new Random();
 		int small = 0, big = 0, counter = 0, length = 0;
-		
-		Map <Integer,Integer> idList= new HashMap <Integer,Integer>();
+
+		Map<Integer, Integer> idList = new HashMap<Integer, Integer>();
 		Iterator<?> i = Json.readJSON();
 		System.out.println("Running Sentence Counter");
 		while (i.hasNext()) {
@@ -54,9 +54,8 @@ public class SentenceSegmentation {
 
 		}
 		System.out.println("Number of Unique Sentence Count: " + counter);
-		HashMapSort.sortDescending(idList,"SentenceSegmentation");
+		HashMapSort.sortDescending(idList, "SentenceSegmentation");
 	}
-	
 
 	private static void sentenceCountSampling(String sentence) throws Exception {
 		BufferedWriter bw = new BufferedWriter(new FileWriter(new File("dataset\\sentenceCountSample.json"), true));

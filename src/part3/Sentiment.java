@@ -37,7 +37,7 @@ public class Sentiment {
 		Map<String, Integer> idposList = new HashMap<String, Integer>();
 		Map<String, Integer> idnegList = new HashMap<String, Integer>();
 		Iterator<?> it = Json.readJSON();
-		
+
 		System.out.println("Running sentiment analysis - Retreiving top 20 polarity of words");
 		while (it.hasNext()) {
 			JSONObject obj = (JSONObject) it.next();
@@ -48,7 +48,7 @@ public class Sentiment {
 			ArrayList<String> tokensList = new ArrayList<String>(Arrays.asList(tokens));
 			tokensList.replaceAll(String::toLowerCase);
 
-			//using score range to retrieve positive (4-5) and negative (0-3) sentiments
+			// using score range to retrieve positive (4-5) and negative (0-3) sentiments
 			for (int j = 0; j < tokensList.size(); j++) {
 				if (tags[j].equals("JJ")) {
 
@@ -72,24 +72,23 @@ public class Sentiment {
 					}
 				}
 			}
-//			System.out.println("Positive: " + idposList.size() + " Negative: " + idnegList.size());
+			// System.out.println("Positive: " + idposList.size() + " Negative: " +
+			// idnegList.size());
 		}
 
-		
-		//removing duplicate keys in both list to prevent ambiguity
+		// removing duplicate keys in both list to prevent ambiguity
 		ArrayList<String> common = new ArrayList<String>();
 		for (String a : idposList.keySet()) {
 			if (idnegList.containsKey(a)) {
 				common.add(a);
 			}
 		}
-			for (int i = 0; i < common.size(); i++) {
-				if (idnegList.containsKey(common.get(i)))
-					idnegList.remove(common.get(i));
-				if (idposList.containsKey(common.get(i)))
-					idposList.remove(common.get(i));
-			}
-
+		for (int i = 0; i < common.size(); i++) {
+			if (idnegList.containsKey(common.get(i)))
+				idnegList.remove(common.get(i));
+			if (idposList.containsKey(common.get(i)))
+				idposList.remove(common.get(i));
+		}
 
 		System.out.println("Positive List: ");
 		HashMapSort.sortDescending(idposList, "sentiment");
@@ -99,6 +98,10 @@ public class Sentiment {
 	}
 
 	public static void main(String[] args) throws IOException, ParseException {
+		/*
+		 * extracted sentiment from summary instead of reviewText as reviewText contains a lot of noise
+		 * removed words that appear in both positive and negative list to reduce ambiguity 
+		 */
 		extractSentiment();
 	}
 }
