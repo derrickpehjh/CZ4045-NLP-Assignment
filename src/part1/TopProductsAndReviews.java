@@ -12,7 +12,7 @@ import part1.HashMapSort;
 
 public class TopProductsAndReviews {
 
-	private static void countReviewerorProductID(String idType) throws IOException, ParseException {
+	public static void countReviewerorProductID(String idType) throws IOException, ParseException {
 
 		Map<String, Integer> idList = new HashMap<String, Integer>();
 		int counter = 0;
