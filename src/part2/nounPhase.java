@@ -23,9 +23,6 @@ import part1.TopProductsAndReviews;
 
 public class nounPhase {
 
-	static String sentence = "Who is the author of The Call of the Wild?";
-	static String sentence2="Good case, solid build. Protects phone all around with good access to buttons. Battery charges with full battery lasts me a full day. I usually leave my house around 7am and return at 10pm. I'm glad that it lasts from start to end. 5/5";
-	static String sentence3="Just what I needed. I needed a phone case for myself and my two sons, but I also needed new replacement batteries. Now this isn't the case, since I got both in one. Awesome thanks A+";
 	static String openNLPBinLocation = "libraries\\en-parser-chunking.bin";
 	static Map<String, Integer> nounPhrases = new HashMap<String, Integer>();
 	static Map<String, Integer> summaryPhrases1 = new HashMap<String, Integer>();
@@ -37,10 +34,10 @@ public class nounPhase {
 	
 	public static void main(String[] args) throws Exception {
 		top10List=TopProductsAndReviews.retrieveReviewerorProductList("asin");//get top 10 products on review
-		choose3();//Randomly selected
-//		selected3();//Pre-selected used for testing 
+//		choose3();//Randomly selected
+		selected3();//Pre-selected used for testing 
 //		nounPhraseSummarizer();//For overall Search
-		nounPhraseSummarizer(100,300);//Search Particular sections
+		nounPhraseSummarizer(1,150);//Search Particular sections
 		RemoveDuplicates();
 		print();		
 	}
@@ -306,15 +303,15 @@ public class nounPhase {
 	{
 		System.out.println("\n===================================");
 		System.out.println("Overall Summary Phrase Top 10 Contents: ");
-		HashMapSort.retrieveDescending(nounPhrases);
+		HashMapSort.sortDescending(nounPhrases,"nounPhase");
 		System.out.println("\n===================================");
 		System.out.println("Summary Phrase 1 Top 10 Contents for product "+chosen3.get(0));
-		HashMapSort.retrieveDescending(summaryPhrases1);
+		HashMapSort.sortDescending(summaryPhrases1,"nounPhase1");
 		System.out.println("\n===================================");
 		System.out.println("Summary Phrase 2 Top 10 Contents for product "+chosen3.get(1));
-		HashMapSort.retrieveDescending(summaryPhrases2);
+		HashMapSort.sortDescending(summaryPhrases2,"nounPhase2");
 		System.out.println("\n===================================");
 		System.out.println("Summary Phrase 3 Top 10 Contents for product "+chosen3.get(2));
-		HashMapSort.retrieveDescending(summaryPhrases3);
+		HashMapSort.sortDescending(summaryPhrases3,"nounPhase3");
 	}
 }
