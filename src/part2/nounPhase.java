@@ -39,7 +39,7 @@ public class nounPhase {
 		top10List=TopProductsAndReviews.retrieveReviewerorProductList("asin");//get top 10 products on review
 		choose3();//Randomly selected
 //		selected3();//Pre-selected used for testing 
-		nounPhraseSummarizer();//For overall Search
+//		nounPhraseSummarizer();//For overall Search
 		nounPhraseSummarizer(100,300);//Search Particular sections
 		RemoveDuplicates();
 		print();		

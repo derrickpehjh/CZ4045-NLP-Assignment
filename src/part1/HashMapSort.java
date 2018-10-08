@@ -99,7 +99,6 @@ public class HashMapSort {
 	public static ArrayList<String> retrieveDescending(Map<?, ?> idList) {
 		Map<Integer, String> map = sortByValues((HashMap<?, ?>) idList);
 		ArrayList<String> savedList = new ArrayList<String>();
-		System.out.println("After Sorting:");
 		Set<Entry<Integer, String>> set = map.entrySet();
 		Iterator<Entry<Integer, String>> iterator = set.iterator();
 		int x = 0;
