@@ -306,15 +306,15 @@ public class nounPhase {
 	{
 		System.out.println("\n===================================");
 		System.out.println("Overall Summary Phrase Top 10 Contents: ");
-		HashMapSort.sortDescending(nounPhrases,"nounPhase");
+		HashMapSort.retrieveDescending(nounPhrases);
 		System.out.println("\n===================================");
 		System.out.println("Summary Phrase 1 Top 10 Contents for product "+chosen3.get(0));
-		HashMapSort.sortDescending(summaryPhrases1,"nounPhase1");
+		HashMapSort.retrieveDescending(summaryPhrases1);
 		System.out.println("\n===================================");
 		System.out.println("Summary Phrase 2 Top 10 Contents for product "+chosen3.get(1));
-		HashMapSort.sortDescending(summaryPhrases2,"nounPhase2");
+		HashMapSort.retrieveDescending(summaryPhrases2);
 		System.out.println("\n===================================");
 		System.out.println("Summary Phrase 3 Top 10 Contents for product "+chosen3.get(2));
-		HashMapSort.sortDescending(summaryPhrases3,"nounPhase3");
+		HashMapSort.retrieveDescending(summaryPhrases3);
 	}
 }
