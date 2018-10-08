@@ -1,5 +1,6 @@
 package part1;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -94,4 +95,23 @@ public class HashMapSort {
 
 		}
 	}
+	
+	public static ArrayList<String> retrieveDescending(Map<?, ?> idList) {
+		Map<Integer, String> map = sortByValues((HashMap<?, ?>) idList);
+		ArrayList<String> savedList = new ArrayList<String>();
+		System.out.println("After Sorting:");
+		Set<Entry<Integer, String>> set = map.entrySet();
+		Iterator<Entry<Integer, String>> iterator = set.iterator();
+		int x = 0;
+		while (iterator.hasNext()) {
+			@SuppressWarnings("rawtypes")
+			Map.Entry me = (Map.Entry) iterator.next();
+			x++;
+			if (x <= 10) {
+				savedList.add(me.getKey().toString());
+			}
+		}
+		return savedList;
+	}
+	
 }

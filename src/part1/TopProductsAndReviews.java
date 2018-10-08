@@ -6,13 +6,14 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import part1.Json;
 import part1.HashMapSort;
 
 public class TopProductsAndReviews {
 
-	public static void countReviewerorProductID(String idType) throws IOException, ParseException {
+	private static void countReviewerorProductID(String idType) throws IOException, ParseException {
 
 		Map<String, Integer> idList = new HashMap<String, Integer>();
 		int counter = 0;
@@ -42,6 +43,33 @@ public class TopProductsAndReviews {
 		HashMapSort.sortDescending(idList, "TopProductsAndReviews");
 	}
 
+	
+	public static List<String> retrieveReviewerorProductList(String idType) throws IOException, ParseException {
+
+		Map<String, Integer> idList = new HashMap<String, Integer>();
+		Iterator<?> i = Json.readJSON();
+
+		if (idType == "reviewerID")
+			System.out.println("Running Review Counter");
+		else if (idType == "asin")
+			System.out.println("Running Product Counter");
+		else
+			System.out.println("Running " + idType + " Counter");
+
+		while (i.hasNext()) {
+
+			JSONObject obj = (JSONObject) i.next();
+			String id = (String) obj.get(idType);
+			if (!idList.containsKey(id)) {
+				idList.put(id, 1);
+			} else {
+				int count = idList.get(id);
+				count++;
+				idList.put(id, count);
+			}
+		}
+		return HashMapSort.retrieveDescending(idList);
+	}
 	public static void main(String[] args) throws IOException, ParseException {
 		/*
 		 * reviewerID - reviewerID asin - ProductID

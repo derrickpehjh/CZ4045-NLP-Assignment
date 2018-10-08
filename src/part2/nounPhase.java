@@ -36,8 +36,8 @@ public class nounPhase {
 	static int counter=0;
 	
 	public static void main(String[] args) throws Exception {
-		TopProductsAndReviews.countReviewerorProductID("asin");//get top 10 products on review
-//		choose3();//Randomly selected
+		top10List=TopProductsAndReviews.retrieveReviewerorProductList("asin");//get top 10 products on review
+		choose3();//Randomly selected
 //		selected3();//Pre-selected used for testing 
 		nounPhraseSummarizer();//For overall Search
 		nounPhraseSummarizer(100,300);//Search Particular sections
@@ -241,7 +241,7 @@ public class nounPhase {
 		int count=0;
 		while (!done)
 		{
-			int num =rand.nextInt(10);
+			int num =rand.nextInt(9);
 			if(top10List.get(num)!=""&&!exclude.contains(num))
 			{
 				exclude.add(num);
