@@ -143,7 +143,7 @@ public class TokenizeAndStemming {
 		/*
 		 * 2nd parameter : true = stemming , false = no stemming
 		 */
-		 countTokens("reviewText",false);
-//		countTokens("reviewText", true);
+//		 countTokens("reviewText",false);
+		countTokens("reviewText", true);
 	}
 }

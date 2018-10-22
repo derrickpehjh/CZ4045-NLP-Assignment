@@ -36,7 +36,7 @@ public class HashMapSort {
 
 	public static void sortDescending(Map<?, ?> idList, String idType) {
 
-		if (idType.equals("SentenceSegmentation")) {
+		if (idType.equals("SentenceSegmentation")|| idType.equals("Tokenization")) {
 			Map<Integer, String> map = sortByValues((HashMap<?, ?>) idList);
 			System.out.println("After Sorting:");
 			Set<?> set2 = map.entrySet();
