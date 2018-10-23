@@ -13,8 +13,8 @@ Required Libraries are included in the libraries folder
 ## Run:
 ### Part 1
 1) Json.java (Optional). This program formats the dataset into a valid json file. A processed file has already been included in the dataset folder
-2) TopProductsAndReviews.java. No modification is needed.
-3) SentenceSegmentation.java. No modification is needed.
+2) TopProductsAndReviews.java. 
+3) SentenceSegmentation.java. 
 4) TokenizeAndStemming.java. Toggle stemming and non stemming printout at the main method.
 5) PosTagging.java.
 
