@@ -346,10 +346,7 @@ public class AlternatenounPhase {
 	}
 	public static void writeToJson(int start,int end) throws IOException
 	{
-		BufferedWriter bw = new BufferedWriter(
-				new FileWriter(new File(formattedfileLocation2), true));
-		bw.write("[");
-		bw.close();
+
 		JSONObject obj = new JSONObject();
 		obj.put("Start", start);
 		obj.put("End", end);
@@ -368,7 +365,7 @@ public class AlternatenounPhase {
 			file.write(obj.toJSONString());
 			System.out.println("Successfully Copied JSON Object to File...");
 			System.out.println("\nJSON Object: " + obj);
-			file.write("]");
+			file.write(",");
 		}
 	}
 

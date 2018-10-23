@@ -48,7 +48,7 @@ public class nounPhase {
 //		nounPhraseSummarizer();//For overall Search
 
 		selected3();//Pre-selected used for testing 
-		int start=0,end=100;
+		int start=10,end=20;
 		nounPhraseSummarizer(start,end);//Search Particular sections
 		RemoveDuplicates();
 		writeToJson(start,end);
@@ -346,10 +346,7 @@ public class nounPhase {
 	}
 	public static void writeToJson(int start,int end) throws IOException
 	{
-		BufferedWriter bw = new BufferedWriter(
-				new FileWriter(new File(formattedfileLocation2), true));
-		bw.write("[");
-		bw.close();
+
 		JSONObject obj = new JSONObject();
 		obj.put("Start", start);
 		obj.put("End", end);
@@ -368,7 +365,7 @@ public class nounPhase {
 			file.write(obj.toJSONString());
 			System.out.println("Successfully Copied JSON Object to File...");
 			System.out.println("\nJSON Object: " + obj);
-			file.write("]");
+			file.write(",");
 		}
 	}
 
