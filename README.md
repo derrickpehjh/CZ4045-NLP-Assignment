@@ -1,7 +1,8 @@
 # Setup
 
 ## Downloads:
-1) Eclipse IDE https://www.eclipse.org/downloads/
+1) Java https://www.java.com/en/download/
+2) Eclipse IDE https://www.eclipse.org/downloads/
 
 Required Libraries are included in the libraries folder
 
