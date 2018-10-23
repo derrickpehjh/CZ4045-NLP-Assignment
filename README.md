@@ -4,7 +4,7 @@
 1) Java https://www.java.com/en/download/
 2) Eclipse IDE https://www.eclipse.org/downloads/
 
-Required Libraries are included in the libraries folder
+Required Libraries are included in the libraries folder. You may need to configure build path and add the libraries if there are errors pertaining to it.
 
 ## Import:
 1) Create a new workspace in eclipse

@@ -3,7 +3,6 @@ package part2;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,7 +26,6 @@ import opennlp.tools.parser.ParserFactory;
 import opennlp.tools.parser.ParserModel;
 import part1.HashMapSort;
 import part1.Json;
-import part1.TopProductsAndReviews;
 
 public class AlternatenounPhase {
 
@@ -344,6 +342,7 @@ public class AlternatenounPhase {
 		System.out.println("Summary Phrase 3 Top 10 Contents for product "+chosen3.get(2));
 		HashMapSort.sortDescending(summaryPhrases3,"nounPhase3");
 	}
+	@SuppressWarnings("unchecked")
 	public static void writeToJson(int start,int end) throws IOException
 	{
 

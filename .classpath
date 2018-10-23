@@ -39,7 +39,6 @@
 	<classpathentry kind="lib" path="libraries/apache-opennlp-1.9.0/lib/opennlp-uima-1.9.0.jar"/>
 	<classpathentry kind="lib" path="libraries/apache-opennlp-1.9.0/lib/osgi-resource-locator-1.0.1.jar"/>
 	<classpathentry kind="lib" path="libraries/apache-opennlp-1.9.0/lib/validation-api-1.1.0.Final.jar"/>
-	<classpathentry kind="lib" path="libraries/apache-opennlp-1.9.0.zip"/>
 	<classpathentry kind="lib" path="libraries/en-parser-chunking.bin"/>
 	<classpathentry kind="lib" path="libraries/en-pos-maxent.bin"/>
 	<classpathentry kind="lib" path="libraries/en-sent.bin"/>
