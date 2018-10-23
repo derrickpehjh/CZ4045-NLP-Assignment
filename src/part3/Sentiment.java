@@ -50,7 +50,7 @@ public class Sentiment {
 
 			// using score range to retrieve positive (4-5) and negative (0-3) sentiments
 			for (int j = 0; j < tokensList.size(); j++) {
-				if (tags[j].equals("JJ")) {
+				if (tags[j].equals("JJ")|| tags[j].equals("JJR") || tags[j].equals("JJS")) {
 
 					if ((double) obj.get("overall") > 3) {
 						if (!idposList.containsKey(tokensList.get(j))) {

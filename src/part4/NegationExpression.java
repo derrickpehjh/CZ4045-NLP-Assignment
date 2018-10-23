@@ -26,7 +26,8 @@ public class NegationExpression {
 			String str = (String) obj.get("reviewText");
 
 			// put regex here
-			String pattern = "(\\w*not\\b)|(\\w*n't\\b)|(\\bnon-?\\w+)|(\\bnever\\b)|(\\bno\\b)|(\\bnothing\\b)|(\\bnobody\\b)|(\\bnowhere\\b)|(\\bnope\\b)";
+			String pattern = "(\\w*not\\b)|(\\b\\w*n't\\b)|(\\bnon-?\\w+\\b)|(\\bnever\\b)|"
+					+ "(\\bno\\b)|(\\bnothing\\b)|(\\bnobody\\b)|(\\bnowhere\\b)|(\\bnope\\b)";
 
 			Pattern p = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
 			Matcher m = p.matcher(str);
