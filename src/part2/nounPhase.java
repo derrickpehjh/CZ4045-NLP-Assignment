@@ -46,7 +46,7 @@ public class nounPhase {
 //		nounPhraseSummarizer();//For overall Search
 
 		selected3();//Pre-selected used for testing 
-		int start=10,end=20;
+		int start=50000,end=100000;
 		nounPhraseSummarizer(start,end);//Search Particular sections
 		RemoveDuplicates();
 		writeToJson(start,end);
