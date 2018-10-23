@@ -29,7 +29,7 @@ import part1.HashMapSort;
 import part1.Json;
 import part1.TopProductsAndReviews;
 
-public class nounPhase {
+public class AlternatenounPhase {
 
 	static String openNLPBinLocation = "libraries\\en-parser-chunking.bin";
 	static Map<String, Integer> nounPhrases = new HashMap<String, Integer>();
@@ -38,7 +38,7 @@ public class nounPhase {
 	static Map<String, Integer> summaryPhrases3 = new HashMap<String, Integer>();
 	static List<String> top10List=new ArrayList<String>();
 	static List<String> chosen3=new ArrayList<String>();
-	static String formattedfileLocation2 = "dataset\\nounPhaseSummarizer.json";
+	static String formattedfileLocation2 = "dataset\\nounPhaseSummarizer1.json";
 	static int counter=0;
 	static Map<String, Integer> JSONnounPhrases = new HashMap<String, Integer>();
 	
@@ -48,7 +48,7 @@ public class nounPhase {
 //		nounPhraseSummarizer();//For overall Search
 
 		selected3();//Pre-selected used for testing 
-		int start=0,end=100;
+		int start=0,end=10;
 		nounPhraseSummarizer(start,end);//Search Particular sections
 		RemoveDuplicates();
 		writeToJson(start,end);
@@ -58,7 +58,7 @@ public class nounPhase {
 	public static void nounPhraseSummarizer(int startIndex,int endIndex) throws Exception, ParseException
 	{
 		int count=0;
-		Iterator<?> i = Json.readJSON();
+		Iterator<?> i = Json.readJSON2();
 		while (i.hasNext()) {
 			count++;
 			

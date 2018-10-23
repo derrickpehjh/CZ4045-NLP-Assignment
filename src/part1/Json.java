@@ -17,7 +17,7 @@ public class Json {
 
 	static String fileLocation = "dataset\\CellPhoneReview.json";
 	static String formattedfileLocation = "dataset\\formattedCellPhoneReivew.json";
-
+	static String formattedfileLocation2 = "dataset\\formattedCellPhoneReivew2.json";
 	public static void formatJSON() throws IOException {
 
 		FileInputStream fstream = new FileInputStream(fileLocation);
@@ -51,7 +51,13 @@ public class Json {
 		Iterator<?> i = jsonArray.iterator();
 		return i;
 	}
-
+	public static Iterator<?> readJSON2() throws IOException, ParseException {
+		JSONParser jsonParser = new JSONParser();
+		FileReader reader = new FileReader(formattedfileLocation2);
+		JSONArray jsonArray = (JSONArray) jsonParser.parse(reader);
+		Iterator<?> i = jsonArray.iterator();
+		return i;
+	}
 	public static void main(String[] args) throws IOException {
 		// formatJSON();
 	}
