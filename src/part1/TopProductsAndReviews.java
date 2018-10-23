@@ -74,8 +74,9 @@ public class TopProductsAndReviews {
 		/*
 		 * reviewerID - reviewerID asin - ProductID
 		 */
-		countReviewerorProductID("reviewerID");
 		countReviewerorProductID("asin");
+		countReviewerorProductID("reviewerID");
+		
 
 	}
 }
