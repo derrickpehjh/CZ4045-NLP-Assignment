@@ -52,7 +52,7 @@ public class AlternatenounPhase {
 		nounPhraseSummarizer(start,end);//Search Particular sections
 		RemoveDuplicates();
 		writeToJson(start,end);
-		 RetrieveJson();
+//		 RetrieveJson();
 		print();		
 	}
 	public static void nounPhraseSummarizer(int startIndex,int endIndex) throws Exception, ParseException
