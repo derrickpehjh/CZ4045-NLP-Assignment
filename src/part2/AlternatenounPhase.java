@@ -46,10 +46,10 @@ public class AlternatenounPhase {
 //		nounPhraseSummarizer();//For overall Search
 
 		selected3();//Pre-selected used for testing 
-		int start=0,end=10;
+		int start=5000,end=10000;
 		nounPhraseSummarizer(start,end);//Search Particular sections
 		RemoveDuplicates();
-		writeToJson(start,end);
+//		writeToJson(start,end);
 //		 RetrieveJson();
 		print();		
 	}
@@ -57,6 +57,7 @@ public class AlternatenounPhase {
 	{
 		int count=0;
 		Iterator<?> i = Json.readJSON2();
+		int tracker =endIndex;
 		while (i.hasNext()) {
 			count++;
 			
@@ -66,16 +67,22 @@ public class AlternatenounPhase {
 				String review = (String) obj.get("reviewText");
 				if(count>startIndex && count<=endIndex)
 				{
-					if(chosen3.contains(productID))
+					extracter(review);
+					if(count%500==0||count ==endIndex)
 					{
-							int index=chosen3.indexOf(productID);
-							index++;
-							extracter(review,index);
+						writeToJson(tracker,count);
+						tracker=count;
 					}
-					else
-					{
-						extracter(review);
-					}
+//					if(chosen3.contains(productID))
+//					{
+//							int index=chosen3.indexOf(productID);
+//							index++;
+//							extracter(review,index);
+//					}
+//					else
+//					{
+//						extracter(review);
+//					}
 				}
 			if(count==endIndex)break;
 //			if(count==200)break;//should remove for full run

@@ -46,10 +46,10 @@ public class nounPhase {
 //		nounPhraseSummarizer();//For overall Search
 
 		selected3();//Pre-selected used for testing 
-		int start=50000,end=100000;
+		int start=0,end=2000;
 		nounPhraseSummarizer(start,end);//Search Particular sections
 		RemoveDuplicates();
-		writeToJson(start,end);
+//		writeToJson(start,end);
 //		 RetrieveJson();
 		print();		
 	}
@@ -57,6 +57,7 @@ public class nounPhase {
 	{
 		int count=0;
 		Iterator<?> i = Json.readJSON();
+		int tracker=startIndex;
 		while (i.hasNext()) {
 			count++;
 			
@@ -66,16 +67,22 @@ public class nounPhase {
 				String review = (String) obj.get("reviewText");
 				if(count>startIndex && count<=endIndex)
 				{
-					if(chosen3.contains(productID))
+					extracter(review);
+					if(count%500==0||count ==endIndex)
 					{
-							int index=chosen3.indexOf(productID);
-							index++;
-							extracter(review,index);
+						writeToJson(tracker,count);
+						tracker=count;
 					}
-					else
-					{
-						extracter(review);
-					}
+//					if(chosen3.contains(productID))
+//					{
+//							int index=chosen3.indexOf(productID);
+//							index++;
+//							extracter(review,index);
+//					}
+//					else
+//					{
+//						extracter(review);
+//					}
 				}
 			if(count==endIndex)break;
 //			if(count==200)break;//should remove for full run
@@ -101,11 +108,11 @@ public class nounPhase {
 						index++;
 						extracter(review,index);
 				}
-				else
-				{
-					extracter(review);
-				}
-			if(count==200)break;//should remove for full run
+//				else
+//				{
+//					extracter(review);
+//				}
+//			if(count==200)break;//should remove for full run
 		}
 		System.out.println("Number of Review: "+count);
 		System.out.println("\n" +"Number of unique Phrases: " + counter );			
