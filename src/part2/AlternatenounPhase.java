@@ -365,6 +365,7 @@ public class AlternatenounPhase {
 			array.add(obj2);
 		}
 		obj.put("Noun Phrase", array);
+		nounPhrases.clear();
 //		try (FileWriter file = new FileWriter(formattedfileLocation2);)
 		try (BufferedWriter file = new BufferedWriter(
 				new FileWriter(new File(formattedfileLocation2), true));) {

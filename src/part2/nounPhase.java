@@ -108,11 +108,11 @@ public class nounPhase {
 						index++;
 						extracter(review,index);
 				}
-//				else
-//				{
-//					extracter(review);
-//				}
-//			if(count==200)break;//should remove for full run
+				else
+				{
+					extracter(review);
+				}
+			if(count==200)break;//should remove for full run
 		}
 		System.out.println("Number of Review: "+count);
 		System.out.println("\n" +"Number of unique Phrases: " + counter );			
@@ -364,14 +364,15 @@ public class nounPhase {
 			obj2.put("Count", nounPhrases.get(nounPhrase));
 			array.add(obj2);
 		}
+		nounPhrases.clear();
 		obj.put("Noun Phrase", array);
 //		try (FileWriter file = new FileWriter(formattedfileLocation2);)
 		try (BufferedWriter file = new BufferedWriter(
 				new FileWriter(new File(formattedfileLocation2), true));) {
 			file.write(obj.toJSONString());
 			System.out.println("Successfully Copied JSON Object to File...");
-			System.out.println("\nJSON Object: " + obj);
-			file.write(",");
+//			System.out.println("\nJSON Object: " + obj);
+			file.write(",");	
 		}
 	}
 
