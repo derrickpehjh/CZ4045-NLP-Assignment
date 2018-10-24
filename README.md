@@ -3,6 +3,7 @@
 ## Downloads:
 1) Java https://www.java.com/en/download/
 2) Eclipse IDE https://www.eclipse.org/downloads/
+3) Source files https://github.com/derrickpehjh/CZ4045-NLP-Assignment
 
 Required Libraries are included in the libraries folder. You may need to configure build path and add the libraries if there are errors pertaining to it.
 
