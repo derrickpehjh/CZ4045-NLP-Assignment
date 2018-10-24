@@ -3,9 +3,6 @@
 ## Downloads:
 1) Java https://www.java.com/en/download/
 2) Eclipse IDE https://www.eclipse.org/downloads/
-3) git lfs https://git-lfs.github.com/
-
-git lfs is needed to pull large files. If git lfs is not installed, you will only pull the large files with the pointers in it instead of the actual contents.
 
 Required Libraries are included in the libraries folder. You may need to configure build path and add the libraries if there are errors pertaining to it.
 
