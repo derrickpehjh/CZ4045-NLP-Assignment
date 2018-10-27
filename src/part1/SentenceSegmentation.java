@@ -90,8 +90,18 @@ public class SentenceSegmentation {
 		String sentences[] = detector.sentDetect(sentence);
 		return sentences.length;
 	}
+	public static String[] Getsentences(String sentence) throws Exception {
+		InputStream inputStream = new FileInputStream(openNLPBinLocation);
+		SentenceModel model = new SentenceModel(inputStream);
 
-	public static void main(String[] args) throws Exception {
-		countSentences("reviewText");
+		// Instantiating the SentenceDetectorME class
+		SentenceDetectorME detector = new SentenceDetectorME(model);
+
+		// Detecting the sentence
+		String sentences[] = detector.sentDetect(sentence);
+		return sentences;
 	}
+//	public static void main(String[] args) throws Exception {
+//		countSentences("reviewText");
+//	}
 }

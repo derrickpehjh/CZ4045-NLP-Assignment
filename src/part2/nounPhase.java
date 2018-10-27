@@ -26,6 +26,7 @@ import opennlp.tools.parser.ParserFactory;
 import opennlp.tools.parser.ParserModel;
 import part1.HashMapSort;
 import part1.Json;
+import part1.SentenceSegmentation;
 
 public class nounPhase {
 
@@ -39,14 +40,16 @@ public class nounPhase {
 	static String formattedfileLocation2 = "dataset\\nounPhaseSummarizer.json";
 	static int counter=0;
 	static Map<String, Integer> JSONnounPhrases = new HashMap<String, Integer>();
+	static boolean enable;
 	
 	public static void main(String[] args) throws Exception {
 //		top10List=TopProductsAndReviews.retrieveReviewerorProductList("asin");//get top 10 products on review
 //		choose3();//Randomly selected
 //		nounPhraseSummarizer();//For overall Search
-
+		
 		selected3();//Pre-selected used for testing 
-		int start=0,end=2000;
+		enable = false;
+		int start=33000,end=410000;
 		nounPhraseSummarizer(start,end);//Search Particular sections
 		RemoveDuplicates();
 //		writeToJson(start,end);
@@ -65,7 +68,17 @@ public class nounPhase {
 				JSONObject obj = (JSONObject) i.next();
 				String productID=(String) obj.get("asin");
 				String review = (String) obj.get("reviewText");
-				if(count>startIndex && count<=endIndex)
+				if(count==14032&& enable)//For really large reviews
+				{
+					String[] sentences=SentenceSegmentation.Getsentences(review);
+					for(String sentence:sentences)
+					{
+						extracter(sentence);
+					}
+					writeToJson(tracker,count);
+					tracker=count;
+				}
+				else if(count>startIndex && count<=endIndex)
 				{
 					extracter(review);
 					if(count%500==0||count ==endIndex)
