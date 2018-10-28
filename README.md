@@ -1,19 +1,19 @@
 # Setup
 
-## Downloads:
+### Downloads:
 1) Java https://www.java.com/en/download/
 2) Eclipse IDE https://www.eclipse.org/downloads/
 3) Source files https://github.com/derrickpehjh/CZ4045-NLP-Assignment
 
 Required Libraries are included in the libraries folder. You may need to configure build path and add the libraries if there are errors pertaining to it.
 
-## Import:
+### Import:
 1) Create a new workspace in eclipse
 2) Import the source files as a java project
 3) Run the program
 
 # Run:
-## Part 1
+### Part 1
 1) Json.java (Optional)
     - This program formats the dataset into a valid json file. A processed file has already been included in the dataset folder.
   
@@ -26,17 +26,17 @@ Required Libraries are included in the libraries folder. You may need to configu
   
 5) PosTagging.java
 
-## Part 2
+### Part 2
 1) nounPhase.java
 
-## Part 3
+### Part 3
 1) Sentiment.java
 
-## Part 4
+### Part 4
 1) NegationExpression.java
 
 # Output:
-## Part 1
+### Part 1
 1) Json.java
     - Creates a json formatted file of the raw dataset.
   
@@ -52,14 +52,14 @@ Required Libraries are included in the libraries folder. You may need to configu
 5) PosTagging.java
     - 1st half of the output prints 5 original sentences. 2nd half of the output prints the 5 sentences with POS Tagging included.
 
-## Part 2
+### Part 2
 1) nounPhase.java
     - 1st half of the output prints the top 10 noun phrase. 2nd half of the output prints the top 10 noun phrase for 3 chosen products.
 
-## Part 3
+### Part 3
 1) Sentiment.java
     - 1st half of the output prints the top 20 positive words. 2nd half of the output prints the top 20 negative words.
 
-## Part 4
+### Part 4
 1) NegationExpression.java
     - Prints all sentences with negation expressions in it as well as the negation terms.
