@@ -26,6 +26,7 @@ import opennlp.tools.parser.ParserFactory;
 import opennlp.tools.parser.ParserModel;
 import part1.HashMapSort;
 import part1.Json;
+import part1.SentenceSegmentation;
 
 public class AlternatenounPhase {
 
@@ -39,6 +40,7 @@ public class AlternatenounPhase {
 	static String formattedfileLocation2 = "dataset\\nounPhaseSummarizer1.json";
 	static int counter=0;
 	static Map<String, Integer> JSONnounPhrases = new HashMap<String, Integer>();
+	static boolean enable;
 	
 	public static void main(String[] args) throws Exception {
 //		top10List=TopProductsAndReviews.retrieveReviewerorProductList("asin");//get top 10 products on review
@@ -46,7 +48,8 @@ public class AlternatenounPhase {
 //		nounPhraseSummarizer();//For overall Search
 
 		selected3();//Pre-selected used for testing 
-		int start=5000,end=10000;
+		int start=47500,end=50000;
+		enable=false;
 		nounPhraseSummarizer(start,end);//Search Particular sections
 		RemoveDuplicates();
 //		writeToJson(start,end);
@@ -57,7 +60,7 @@ public class AlternatenounPhase {
 	{
 		int count=0;
 		Iterator<?> i = Json.readJSON2();
-		int tracker =endIndex;
+		int tracker =startIndex;
 		while (i.hasNext()) {
 			count++;
 			
@@ -65,7 +68,17 @@ public class AlternatenounPhase {
 				JSONObject obj = (JSONObject) i.next();
 				String productID=(String) obj.get("asin");
 				String review = (String) obj.get("reviewText");
-				if(count>startIndex && count<=endIndex)
+				if(count==12203&&enable)//For really large reviews
+				{
+					String[] sentences=SentenceSegmentation.Getsentences(review);
+					for(String sentence:sentences)
+					{
+						extracter(sentence);
+					}
+					writeToJson(tracker,count);
+					tracker=count;
+				}
+				else if(count>startIndex && count<=endIndex)
 				{
 					extracter(review);
 					if(count%500==0||count ==endIndex)
@@ -108,11 +121,11 @@ public class AlternatenounPhase {
 						index++;
 						extracter(review,index);
 				}
-				else
-				{
-					extracter(review);
-				}
-			if(count==200)break;//should remove for full run
+//				else
+//				{
+//					extracter(review);
+//				}
+//			if(count==200)break;//should remove for full run
 		}
 		System.out.println("Number of Review: "+count);
 		System.out.println("\n" +"Number of unique Phrases: " + counter );			
@@ -371,7 +384,7 @@ public class AlternatenounPhase {
 				new FileWriter(new File(formattedfileLocation2), true));) {
 			file.write(obj.toJSONString());
 			System.out.println("Successfully Copied JSON Object to File...");
-			System.out.println("\nJSON Object: " + obj);
+//			System.out.println("\nJSON Object: " + obj);
 			file.write(",");
 		}
 	}
