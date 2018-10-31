@@ -87,7 +87,7 @@ public class HashMapSort {
 				@SuppressWarnings("rawtypes")
 				Map.Entry me = (Map.Entry) iterator.next();
 				x++;
-				if (x <= 10) {
+				if (x <= 20) {
 					System.out.print(me.getKey() + ": ");
 					System.out.println(me.getValue());
 				}

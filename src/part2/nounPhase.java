@@ -27,9 +27,9 @@ import opennlp.tools.parser.ParserModel;
 import part1.HashMapSort;
 import part1.Json;
 import part1.SentenceSegmentation;
+import part1.TopProductsAndReviews;
 
 public class nounPhase {
-
 	static String openNLPBinLocation = "libraries\\en-parser-chunking.bin";
 	static Map<String, Integer> nounPhrases = new HashMap<String, Integer>();
 	static Map<String, Integer> summaryPhrases1 = new HashMap<String, Integer>();
@@ -37,100 +37,120 @@ public class nounPhase {
 	static Map<String, Integer> summaryPhrases3 = new HashMap<String, Integer>();
 	static List<String> top10List=new ArrayList<String>();
 	static List<String> chosen3=new ArrayList<String>();
-	static String formattedfileLocation2 = "dataset\\nounPhaseSummarizer.json";
+	static String JSONFile = "dataset\\nounPhaseSummarizer1.json";
+	static String JSONFile2 = "dataset\\nounPhaseSummarizer.json";
 	static int counter=0;
 	static Map<String, Integer> JSONnounPhrases = new HashMap<String, Integer>();
 	static boolean enable;
 	
 	public static void main(String[] args) throws Exception {
-//		top10List=TopProductsAndReviews.retrieveReviewerorProductList("asin");//get top 10 products on review
-//		choose3();//Randomly selected
-//		nounPhraseSummarizer();//For overall Search
-		
-		selected3();//Pre-selected used for testing 
-		enable = false;
-		int start=33000,end=410000;
-
-		nounPhraseSummarizer(start,end);//Search Particular sections
+		top10List=TopProductsAndReviews.retrieveReviewerorProductList("asin");
+		choose3();
+		nounPhraseSummarizer();
+		RetrieveJson();
 		RemoveDuplicates();
-//		writeToJson(start,end);
-//		 RetrieveJson();
 		print();		
 	}
-	public static void nounPhraseSummarizer(int startIndex,int endIndex) throws Exception, ParseException
+	public static void nounPhraseSummarizer(int startIndex,int endIndex) throws Exception, ParseException//Noun Phrase for specific index
 	{
-		int count=0;
+		int count=0,tracker=startIndex;
 		Iterator<?> i = Json.readJSON();
-		int tracker=startIndex;
 		while (i.hasNext()) {
 			count++;
-			
-				System.out.println("Loop "+count);
-				JSONObject obj = (JSONObject) i.next();
-				String productID=(String) obj.get("asin");
-				String review = (String) obj.get("reviewText");
-				if(count==14032&& enable)//For really large reviews
+			System.out.println("Loop "+count);
+			JSONObject obj = (JSONObject) i.next();
+			String productID=(String) obj.get("asin");
+			String review = (String) obj.get("reviewText");
+			if(count>startIndex && count<=endIndex)
+			{
+				String[] sentences=SentenceSegmentation.Getsentences(review);
+				for(String sentence:sentences)
 				{
-					String[] sentences=SentenceSegmentation.Getsentences(review);
-					for(String sentence:sentences)
+					if(chosen3.contains(productID))
+					{
+						int index=chosen3.indexOf(productID);
+						index++;
+						extracter(sentence,index);
+					}
+					else
 					{
 						extracter(sentence);
-					}
+					}	
+				}
+				if(count%500==0||!i.hasNext())
+				{
 					writeToJson(tracker,count);
 					tracker=count;
 				}
-				else if(count>startIndex && count<=endIndex)
-				{
-					extracter(review);
-					if(count%500==0||count ==endIndex)
-					{
-						writeToJson(tracker,count);
-						tracker=count;
-					}
-//					if(chosen3.contains(productID))
-//					{
-//							int index=chosen3.indexOf(productID);
-//							index++;
-//							extracter(review,index);
-//					}
-//					else
-//					{
-//						extracter(review);
-//					}
-				}
+			}
 			if(count==endIndex)break;
-//			if(count==200)break;//should remove for full run
 		}
 		System.out.println("Number of Review: "+count);
 		System.out.println("\n" +"Number of unique Phrases: " + counter );			
 	}
-	public static void nounPhraseSummarizer() throws Exception, ParseException
+	public static void nounPhraseSummarizer() throws Exception, ParseException//General Noun Phrase
 	{
-		
-		int count=0;
+		int count=0,tracker=0;
 		Iterator<?> i = Json.readJSON();
 		while (i.hasNext()) {
 			count++;
-			
-				System.out.println("Loop "+count);
-				JSONObject obj = (JSONObject) i.next();
-				String productID=(String) obj.get("asin");
-				String review = (String) obj.get("reviewText");
-				if(chosen3.contains(productID))
+			System.out.println("Loop "+count);
+			JSONObject obj = (JSONObject) i.next();
+			String productID=(String) obj.get("asin");
+			String review = (String) obj.get("reviewText");			
+			String[] sentences=SentenceSegmentation.Getsentences(review);
+				for(String sentence:sentences)
 				{
+					if(chosen3.contains(productID))
+					{
 						int index=chosen3.indexOf(productID);
 						index++;
-						extracter(review,index);
+						extracter(sentence,index);
+					}
+					else
+					{
+						extracter(sentence);
+					}	
 				}
-				else
+				if(count%500==0||!i.hasNext())
 				{
-					extracter(review);
+					writeToJson(tracker,count);
+					tracker=count;
 				}
-			if(count==200)break;//should remove for full run
 		}
 		System.out.println("Number of Review: "+count);
 		System.out.println("\n" +"Number of unique Phrases: " + counter );			
 	}
+	public static void nounPhraseSummarizer(String id) throws Exception, ParseException//Noun Phrase for specific Product
+	{
+		int count=0,tracker=0;
+		Iterator<?> i = Json.readJSON();
+		while (i.hasNext()) {
+			count++;
+			System.out.println("Loop "+count);
+			JSONObject obj = (JSONObject) i.next();
+			String productID=(String) obj.get("asin");
+			String review = (String) obj.get("reviewText");			
+			if(productID==id)
+				{
+				String[] sentences=SentenceSegmentation.Getsentences(review);
+					for(String sentence:sentences)
+					{
+							int index=chosen3.indexOf(productID);
+							index++;
+							extracter(sentence,index);
+					}
+				}
+			if(count%500==0||!i.hasNext())
+			{
+					writeToJson(tracker,count);
+					tracker=count;
+			}
+		}
+		System.out.println("Number of Review: "+count);
+		System.out.println("\n" +"Number of unique Phrases: " + counter );			
+	}
+
 	public static void extracter(String sentence1)
 	{
 		InputStream modelInParse = null;
@@ -210,7 +230,6 @@ public class nounPhase {
 		         getNounPhrases(child);
 		}
 		
-		
 		public static void getNounPhrases2(Parse p,int num) {
 		    if (p.getType().equals("NP")) { //NP=noun phrase
 		    	String np=p.getCoveredText().toLowerCase();
@@ -259,19 +278,14 @@ public class nounPhase {
 		    for (Parse child : p.getChildren())
 		         getNounPhrases2(child,num);
 		}
-	public static void selected3()//Pre-Selected 3
-	{
-		chosen3.add("B00BT7RAPG");
-		chosen3.add("B009RXU59C");
-		chosen3.add("B008OHNZI0");
-	}
+
 	public static void choose3 ()
 	{
 		Random rand = new Random();
 		Boolean done=false;
 		List<Integer> exclude=new ArrayList <Integer>();
 		int count=0;
-		System.out.println("Chosen 3:");//Can remove
+		System.out.println("Chosen 3:");
 		while (!done)
 		{
 			int num =rand.nextInt(9);
@@ -334,7 +348,7 @@ public class nounPhase {
 			summaryPhrases3.remove(remove);
 		}
 		removalList.clear();
-		for(String temp:nounPhrases.keySet())
+		for(String temp:JSONnounPhrases.keySet())
 		{
 			if(temp.contains("."))
 			{
@@ -343,7 +357,7 @@ public class nounPhase {
 		}
 		for(String remove:removalList)
 		{
-			nounPhrases.remove(remove);
+			JSONnounPhrases.remove(remove);
 		}
 		removalList.clear();
 		
@@ -351,22 +365,31 @@ public class nounPhase {
 	public static void print()
 	{
 		System.out.println("\n===================================");
-		System.out.println("Overall Summary Phrase Top 10 Contents: ");
-		HashMapSort.sortDescending(nounPhrases,"nounPhase");
+		System.out.println("Overall Summary Phrase Top 20 Contents: ");
+		HashMapSort.sortDescending(JSONnounPhrases,"nounPhase");
 		System.out.println("\n===================================");
-		System.out.println("Summary Phrase 1 Top 10 Contents for product "+chosen3.get(0));
-		HashMapSort.sortDescending(summaryPhrases1,"nounPhase1");
-		System.out.println("\n===================================");
-		System.out.println("Summary Phrase 2 Top 10 Contents for product "+chosen3.get(1));
-		HashMapSort.sortDescending(summaryPhrases2,"nounPhase2");
-		System.out.println("\n===================================");
-		System.out.println("Summary Phrase 3 Top 10 Contents for product "+chosen3.get(2));
-		HashMapSort.sortDescending(summaryPhrases3,"nounPhase3");
+		if(!summaryPhrases1.isEmpty())
+		{
+			System.out.println("Summary Phrase 1 Top 20 Contents for product "+chosen3.get(0));
+			HashMapSort.sortDescending(summaryPhrases1,"nounPhase1");
+			System.out.println("\n===================================");
+		}
+		if(!summaryPhrases2.isEmpty())
+		{
+			System.out.println("Summary Phrase 2 Top 20 Contents for product "+chosen3.get(1));
+			HashMapSort.sortDescending(summaryPhrases2,"nounPhase2");
+			System.out.println("\n===================================");
+		}
+		if(!summaryPhrases3.isEmpty())
+		{
+			System.out.println("Summary Phrase 3 Top 20 Contents for product "+chosen3.get(2));
+			HashMapSort.sortDescending(summaryPhrases3,"nounPhase3");
+			System.out.println("\n===================================");
+		}
 	}
 	@SuppressWarnings("unchecked")
 	public static void writeToJson(int start,int end) throws IOException
 	{
-
 		JSONObject obj = new JSONObject();
 		obj.put("Start", start);
 		obj.put("End", end);
@@ -380,12 +403,10 @@ public class nounPhase {
 		}
 		nounPhrases.clear();
 		obj.put("Noun Phrase", array);
-//		try (FileWriter file = new FileWriter(formattedfileLocation2);)
 		try (BufferedWriter file = new BufferedWriter(
-				new FileWriter(new File(formattedfileLocation2), true));) {
+				new FileWriter(new File(JSONFile), true));) {
 			file.write(obj.toJSONString());
 			System.out.println("Successfully Copied JSON Object to File...");
-//			System.out.println("\nJSON Object: " + obj);
 			file.write(",");	
 		}
 	}
@@ -393,7 +414,7 @@ public class nounPhase {
 	public static void RetrieveJson() throws IOException, ParseException
 	{
 		JSONParser jsonParser = new JSONParser();
-		FileReader reader = new FileReader(formattedfileLocation2);
+		FileReader reader = new FileReader(JSONFile2);
 		JSONArray jsonArray = (JSONArray) jsonParser.parse(reader);
 		Iterator<?> i = jsonArray.iterator();
 		List<Long> startList = new ArrayList<Long>();
@@ -414,7 +435,6 @@ public class nounPhase {
 			for (int x=0;x<array2.size();x++)
 			{
 				JSONObject temp=(JSONObject) array2.get(x);
-//				System.out.println("Phrase: "+temp.get("Noun Phrase"));
 				String phrase=(String) temp.get("Noun Phrase");
 				long count= (long) temp.get("Count");
 				if(JSONnounPhrases.containsKey(phrase))
@@ -430,5 +450,4 @@ public class nounPhase {
 			}
 		}
 	}
-	
 }

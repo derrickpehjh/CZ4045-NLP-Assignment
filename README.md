@@ -3,9 +3,7 @@
 ## Downloads:
 1) Java https://www.java.com/en/download/
 2) Eclipse IDE https://www.eclipse.org/downloads/
-3) git lfs https://git-lfs.github.com/
-
-git lfs is needed to pull large files. If git lfs is not installed, you will only pull the large files with the pointers in it instead of the actual contents.
+3) Source files https://github.com/derrickpehjh/CZ4045-NLP-Assignment
 
 Required Libraries are included in the libraries folder. You may need to configure build path and add the libraries if there are errors pertaining to it.
 
@@ -24,6 +22,8 @@ Required Libraries are included in the libraries folder. You may need to configu
 
 ## Part 2
 1) nounPhase.java. 
+   Note: If you want to run noun phrase summarizer on a specific product or a specific section of the data, add to nounPhraseSummarizer() method's input
+   the product id or the start and end index of the desired section accordingly. 
 
 ## Part 3
 1) Sentiment.java. 
@@ -40,7 +40,7 @@ Required Libraries are included in the libraries folder. You may need to configu
 5) PosTagging.java. 1st half of the output prints 5 original sentences. 2nd half of the output prints the 5 sentences with POS Tagging included.
 
 ## Part 2
-1) nounPhase.java. 1st half of the output prints the top 10 noun phrase. 2nd half of the output prints the top 10 noun phrase for 3 chosen products.
+1) nounPhase.java. 1st half of the output prints the number of reviews that it has process, the number of unique phrases as well as the top 20 noun phrase for the overall processing. 2nd half of the output prints the top 20 noun phrase for 3 chosen products.
 
 ## Part 3
 1) Sentiment.java. 1st half of the output prints the top 20 positive words. 2nd half of the output prints the top 20 negative words.

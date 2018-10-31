@@ -101,7 +101,7 @@ public class SentenceSegmentation {
 		String sentences[] = detector.sentDetect(sentence);
 		return sentences;
 	}
-//	public static void main(String[] args) throws Exception {
-//		countSentences("reviewText");
-//	}
+	public static void main(String[] args) throws Exception {
+		countSentences("reviewText");
+	}
 }
