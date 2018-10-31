@@ -8,13 +8,13 @@
 3) Source files 
 	- https://github.com/derrickpehjh/CZ4045-NLP-Assignment
 4) Libraries
-	- https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/derrickpehjh/CZ4045-NLP-Assignment/tree/master/libraries
+	- https://entuedu-my.sharepoint.com/:f:/g/personal/derr0008_e_ntu_edu_sg/EpVS-ZCTSUxJqGrtLPh3OB8B59zmapzAUNPX_MgPxgp9Lw?e=hfgh6j
 5) Datasets
-	- https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/derrickpehjh/CZ4045-NLP-Assignment/tree/master/dataset
+	- https://entuedu-my.sharepoint.com/:f:/g/personal/derr0008_e_ntu_edu_sg/Es1tZM6T0EtPlDWrOajLEsIBqSo8wiJRlxBEFA2ETUPhmA?e=5n8037
 
 ### Import:
 1) Create a new workspace in eclipse and import the project folder
-2) Download the Libraries and Dataset in the link given above and place them in the libraries and dataset folder respectively
+2) Download the Libraries and Dataset in the link given above and place them in the libraries and dataset folder respectively. Alternatively, instead of downloading the required files using the given links, you can clone the repository with git lfs clone command. 
 3) If libraries are not recognised by the IDE, import all the libraries in the libraries folder using Build Path -> Configure Build Path -> Add External JARs and include all files in the libraries folder
 4) Run the program
 
