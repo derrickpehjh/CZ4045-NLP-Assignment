@@ -8,7 +8,7 @@
 3) Source files 
 	- https://github.com/derrickpehjh/CZ4045-NLP-Assignment
 4) Libraries
-	- https://github.com/derrickpehjh/CZ4045-NLP-Assignment/tree/master/libraries
+	- https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/derrickpehjh/CZ4045-NLP-Assignment/tree/master/libraries
 5) Datasets
 	- https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/derrickpehjh/CZ4045-NLP-Assignment/tree/master/dataset
 

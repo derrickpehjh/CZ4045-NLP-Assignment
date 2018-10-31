@@ -46,7 +46,7 @@ public class nounPhase {
 	public static void main(String[] args) throws Exception {
 		top10List=TopProductsAndReviews.retrieveReviewerorProductList("asin");
 		choose3();
-		nounPhraseSummarizer();
+//		nounPhraseSummarizer();
 		RetrieveJson();
 		RemoveDuplicates();
 		print();		
