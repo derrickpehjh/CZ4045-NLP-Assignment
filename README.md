@@ -15,7 +15,7 @@
 ### Import:
 1) Create a new workspace in eclipse and import the project folder
 2) Download the Libraries and Dataset in the link given above and place them in the libraries and dataset folder respectively
-3) Import the all the libraries in the libraries folder using configure build path -> add external jars
+3) If libraries are not recognised by the IDE, import all the libraries in the libraries folder using Build Path -> Configure Build Path -> Add External JARs and include all files in the libraries folder
 4) Run the program
 
 # Run:
