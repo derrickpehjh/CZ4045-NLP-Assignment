@@ -28,8 +28,9 @@ Required Libraries are included in the libraries folder. You may need to configu
 
 ### Part 2
 1) nounPhase.java
-Note: If you want to run noun phrase summarizer on a specific product or a specific section of the data, add to nounPhraseSummarizer() method's input
+    - Note: If you want to run noun phrase summarizer on a specific product or a specific section of the data, add to nounPhraseSummarizer() method's input
    the product id or the start and end index of the desired section accordingly. 
+    - Note:If you want to see the already processed data without going through the whole processing, comment out the nounPhraseSummarizer() in the main method
 
 ### Part 3
 1) Sentiment.java
